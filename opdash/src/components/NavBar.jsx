@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react";
 
-const NavBar = () => {
+
+function Navbar() {
+  
   return (
-    <nav className='navbar'>    
-        <h1 className='navbar-title'>Operations Dashboard</h1>
+    <nav>
+      <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+        <span className="nav-brand">Operations Dashboard</span>
+      </div>
+      
     </nav>
-  )
-}
+)}
 
-export default NavBar;
+export default Navbar;
