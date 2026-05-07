@@ -59,4 +59,4 @@ function SummaryCard() {
     );
 }
 
-export default SummaryCard;
+export {SummaryCard};

@@ -9,6 +9,6 @@ import React from 'react'
         </div>
     );
 }
-export {StatsCard};
+export { StatsCard };
 
   
