@@ -24,11 +24,11 @@ function SummaryCard() {
     }, []);
 
     const totalTrades = trades.length;
-    const unresolvedCount = trades.filter((trade) => !trade.resolved).length;
-    const highSeverityCount = trades.filter((trade) => trade.severity === "high").length;
-    const resolvedTodayCount = trades.filter((trade) => {
+    const unresolvedCount = trades.filter((trades) => trades.status === "OPEN").length;
+    const highSeverityCount = trades.filter((trades) => trades.severity === "HIGH").length;
+    const resolvedTodayCount = trades.filter((trades) => {
         const today = new Date().toISOString().split("T")[0];
-        const resolvedDate = new Date(trade.resolvedAt).toISOString().split("T")[0];
+        const resolvedDate = new Date(trades.resolvedAt).toISOString().split("T")[0];
         return resolvedDate === today;
     }).length;
 
