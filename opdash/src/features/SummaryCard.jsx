@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { fetchMockTrades } from "../data/mockTrades";
+import { StatsCard } from "../components/StatsCard";
 
 function SummaryCard() {
     const [trades, setTrades] = useState([]);
@@ -33,22 +34,27 @@ function SummaryCard() {
     }).length;
 
     return (
-        <div className="summary-card">
-            <h2>Total Trades</h2>
-            <div className="summary-value">{totalTrades}</div>
-
-            <div className="summary-card">
-                <h2>Unresolved Exceptions</h2>
-                <div className="summary-value">{unresolvedCount}</div>
-            </div>
-            <div className="summary-card">
-                <h2>High Severity Count</h2>
-                <div className="summary-value">{highSeverityCount}</div>
-            </div>
-            <div className="summary-card">
-                <h2>Resolved Today</h2>
-                <div className="summary-value">{resolvedTodayCount}</div>
-            </div>
+        <div className="summary-cards">
+            < StatsCard
+            label="Total Trades"
+            value={totalTrades}
+            variant = "default"
+            />
+            < StatsCard
+            label="Unresolved Trades"
+            value={unresolvedCount}
+            variant = "warning"
+            />
+            < StatsCard
+            label="High Severity Exceptions"
+            value={highSeverityCount}
+            variant = "danger"
+            />
+            < StatsCard
+            label="Resolved Today"
+            value={resolvedTodayCount}
+            variant = "success"
+            />
         </div>
     );
 }

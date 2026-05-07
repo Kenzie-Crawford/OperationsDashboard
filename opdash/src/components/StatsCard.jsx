@@ -1,9 +1,5 @@
 import React from 'react'
 
-
-
-
-
  function StatsCard ({label, value, variant}) {  
 
     return (
