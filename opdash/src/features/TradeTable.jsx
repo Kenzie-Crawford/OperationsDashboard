@@ -45,11 +45,12 @@ function TradeTable() {
                         <tbody>
                             {trades.map((trade) => (
                                 <tr key={trade.id}>
+                                    <td>{trade.id}</td>
                                     <td>{trade.assetType}</td>
                                     <td>{trade.counterparty}</td>
                                     <td>{trade.settlementDate}</td>
-                                    <td>{trade.severity}</td>
-                                    <td>{trade.status}</td>
+                                    <td><Badge value = {trade.severity} /></td>
+                                    <td><Badge value = {trade.status} /></td>
                                 </tr>
                             ))}
                         </tbody>

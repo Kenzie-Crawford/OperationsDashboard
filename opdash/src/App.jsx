@@ -4,6 +4,7 @@ import NavBar from './components/NavBar'
 import { StatsCard } from './components/StatsCard';
 import {SummaryCard} from './features/SummaryCard';
 import {TradeTable} from './features/TradeTable';
+import Badge from './components/Badge.jsx';
 
 
 
@@ -19,6 +20,7 @@ function App() {
       <SummaryCard/>
       <StatsCard/>
       <TradeTable/>
+      <Badge/>
       </div>
 
   )
