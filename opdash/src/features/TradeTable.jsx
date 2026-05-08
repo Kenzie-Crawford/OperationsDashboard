@@ -33,27 +33,29 @@ function TradeTable() {
             ) : (
                 <table>
                     <thead>
-                        <tr>ID</tr>
-                        <tr>Asset Type</tr>
-                        <tr>Counter Party</tr>
-                        <tr>Settlement Date</tr>
-                        <tr>Severity</tr>
-                        <tr>Status</tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>Asset Type</th>
+                            <th>Counter Party</th>
+                            <th>Settlement Date</th>
+                            <th>Severity</th>
+                            <th>Status</th>
+                        </tr>
                     </thead>
-                    <tbody>
-                        {trades.map((trade) => (
-                            <tr key={trade.id}>
-                                <td>{trade.assetType}</td>
-                                <td>{trade.counterparty}</td>
-                                <td>{trade.settlementDate}</td>
-                                <td>{trade.severity}</td>
-                                <td>{trade.status}</td>
-                            </tr>
-                        ))}
-                    </tbody>
+                        <tbody>
+                            {trades.map((trade) => (
+                                <tr key={trade.id}>
+                                    <td>{trade.assetType}</td>
+                                    <td>{trade.counterparty}</td>
+                                    <td>{trade.settlementDate}</td>
+                                    <td>{trade.severity}</td>
+                                    <td>{trade.status}</td>
+                                </tr>
+                            ))}
+                        </tbody>
                 </table>
             )}
         </div>
     );
 }
-    export {TradeTable};
+export { TradeTable };
