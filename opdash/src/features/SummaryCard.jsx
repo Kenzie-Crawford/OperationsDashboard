@@ -2,27 +2,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { fetchMockTrades } from "../data/mockTrades";
 import { StatsCard } from "../components/StatsCard";
+import { useTrades } from "../hooks/useTrades";
 
 function SummaryCard() {
-    const [trades, setTrades] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const data = await fetchMockTrades();
-                setTrades(data);
-            } catch (err) {
-                setError(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, []);
+    const {trades, loading, error} = useTrades();
 
     const totalTrades = trades.length;
     const unresolvedCount = trades.filter((trades) => trades.status === "OPEN").length;

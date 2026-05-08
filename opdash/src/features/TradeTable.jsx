@@ -1,28 +1,11 @@
 import Badge from "../components/Badge.jsx";
 import { fetchMockTrades, mockTrades } from "../data/mockTrades.js";
 import { useState, useEffect } from "react";
+import { useTrades } from "../hooks/useTrades.js";
 
 
 function TradeTable() {
-    const [trades, setTrades] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const data = await fetchMockTrades();
-                setTrades(data);
-            } catch (err) {
-                setError(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, []);
+   const {trades, loading, error} = useTrades();
 
     return (
 
