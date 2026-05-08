@@ -4,8 +4,8 @@ import React from 'react'
 
     return (
         <div className={`stats-card ${variant}`}>
-            <div className="stats-card-label">{label}</div>
-            <div className="stats-card-value">{value}</div>
+            <h1 className="stats-card-label">{label}</h1>
+            <h2 className="stats-card-value">{value}</h2>
         </div>
     );
 }
