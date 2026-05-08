@@ -41,7 +41,7 @@ function SummaryCard() {
             variant = "default"
             />
             < StatsCard
-            label="Unresolved Trades"
+            label="Unresolved Exceptions"
             value={unresolvedCount}
             variant = "warning"
             />
