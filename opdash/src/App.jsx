@@ -8,6 +8,7 @@ import Badge from './components/Badge.jsx';
 import { useTrades } from './hooks/useTrades.js';
 import { FilterBar } from './features/FilterBar.jsx';
 import { useMemo } from 'react';
+import { TradeDetail } from './features/TradeDetail.jsx';
 
 
 
@@ -30,6 +31,13 @@ function App() {
     return matchesStatus && matchesSeverity && matchesSearchTerm;
    } );} , [trades, filterStatus, filterSeverity, searchTerm]);
 
+   const [isModalOpen, setIsModalOpen] = useState(false);
+   const [selectedTrade, setSelectedTrade] = useState(null);
+
+   const handleRowClick = (trade) => {
+    setSelectedTrade(trade);
+    setIsModalOpen(true);
+   };
   
 
   return (
@@ -38,7 +46,7 @@ function App() {
       <StatsCard/> 
       <SummaryCard trades={trades} loading={loading} error={error} />
       <StatsCard/>
-      <TradeTable trades={filteredTrades} loading={loading} error={error} />
+      <TradeTable trades={filteredTrades} loading={loading} error={error} onRowClick={handleRowClick} />
       <Badge/>
       <FilterBar 
         searchTerm={searchTerm}
@@ -48,6 +56,7 @@ function App() {
         filterStatus={filterStatus}
         setFilterStatus={setFilterStatus}
       />
+      {isModalOpen && <TradeDetail isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} trade={selectedTrade} />}
       </div>
 
   )

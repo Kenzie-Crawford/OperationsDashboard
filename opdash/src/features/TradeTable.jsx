@@ -1,9 +1,8 @@
 import Badge from "../components/Badge.jsx";
-import { fetchMockTrades, mockTrades } from "../data/mockTrades.js";
-import { useState, useEffect } from "react";
 
 
-function TradeTable({trades, loading, error}) {
+
+function TradeTable({trades, loading, error, onRowClick}) {
 
     return (
 
@@ -28,7 +27,7 @@ function TradeTable({trades, loading, error}) {
                     </thead>
                         <tbody>
                             {trades.map((trade) => (
-                                <tr key={trade.id}>
+                                <tr key={trade.id} onClick={() => onRowClick(trade)}>
                                     <td>{trade.id}</td>
                                     <td>{trade.assetType}</td>
                                     <td>{trade.counterparty}</td>
