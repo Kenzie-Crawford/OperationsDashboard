@@ -1,11 +1,9 @@
 import Badge from "../components/Badge.jsx";
 import { fetchMockTrades, mockTrades } from "../data/mockTrades.js";
 import { useState, useEffect } from "react";
-import { useTrades } from "../hooks/useTrades.js";
 
 
-function TradeTable() {
-   const {trades, loading, error} = useTrades();
+function TradeTable({trades, loading, error}) {
 
     return (
 

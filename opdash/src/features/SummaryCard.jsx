@@ -2,10 +2,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { fetchMockTrades } from "../data/mockTrades";
 import { StatsCard } from "../components/StatsCard";
-import { useTrades } from "../hooks/useTrades";
 
-function SummaryCard() {
-    const {trades, loading, error} = useTrades();
+function SummaryCard({trades, loading, error}) {
 
     const totalTrades = trades.length;
     const unresolvedCount = trades.filter((trades) => trades.status === "OPEN").length;
