@@ -6,12 +6,27 @@ import {SummaryCard} from './features/SummaryCard';
 import {TradeTable} from './features/TradeTable';
 import Badge from './components/Badge.jsx';
 import { useTrades } from './hooks/useTrades.js';
+import { FilterBar } from './features/FilterBar.jsx';
 
 
 
 function App() {
 
   const {trades, loading, error} = useTrades();
+  const [filterStatus, setFilterStatus] = useState("");
+  const [filterSeverity, setFilterSeverity] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+
+
+  const filteredTrades = trades.filter((trade) => {
+    const matchesStatus = filterStatus ? trade.status === filterStatus : true;
+    const matchesSeverity = filterSeverity ? trade.severity === filterSeverity : true;
+    const matchesSearchTerm = searchTerm ? 
+      (trade.counterparty.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      trade.id.toString().includes(searchTerm)) : true;
+
+    return matchesStatus && matchesSeverity && matchesSearchTerm;
+  });
 
   
 
@@ -21,8 +36,16 @@ function App() {
       <StatsCard/> 
       <SummaryCard trades={trades} loading={loading} error={error} />
       <StatsCard/>
-      <TradeTable trades={trades} loading={loading} error={error} />
+      <TradeTable trades={filteredTrades} loading={loading} error={error} />
       <Badge/>
+      <FilterBar 
+        searchTerm={searchTerm}
+        setSearchTerm = {setSearchTerm}
+        filterSeverity={filterSeverity}
+        setFilterSeverity={setFilterSeverity}
+        filterStatus={filterStatus}
+        setFilterStatus={setFilterStatus}
+      />
       </div>
 
   )
