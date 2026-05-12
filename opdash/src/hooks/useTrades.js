@@ -7,6 +7,7 @@ function useTrades() {
 const [trades, setTrades] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,6 +27,7 @@ const [trades, setTrades] = useState([]);
 
     return {
         trades,
+        setTrades,
         loading,
         error
     }

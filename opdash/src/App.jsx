@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 import NavBar from './components/NavBar'
-import { StatsCard } from './components/StatsCard';
-import {SummaryCard} from './features/SummaryCard';
-import {TradeTable} from './features/TradeTable';
-import Badge from './components/Badge.jsx';
+import { SummaryCard } from './features/SummaryCard';
+import { TradeTable } from './features/TradeTable';
 import { useTrades } from './hooks/useTrades.js';
 import { FilterBar } from './features/FilterBar.jsx';
 import { useMemo } from 'react';
@@ -14,7 +12,7 @@ import { TradeDetail } from './features/TradeDetail.jsx';
 
 function App() {
 
-  const {trades, loading, error} = useTrades();
+  const { trades, setTrades, loading, error } = useTrades();
   const [filterStatus, setFilterStatus] = useState("");
   const [filterSeverity, setFilterSeverity] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -24,43 +22,59 @@ function App() {
     return trades.filter((trade) => {
       const matchesStatus = filterStatus ? trade.status === filterStatus : true;
       const matchesSeverity = filterSeverity ? trade.severity === filterSeverity : true;
-      const matchesSearchTerm = searchTerm ? 
-        (trade.counterparty.toLowerCase().includes(searchTerm.toLowerCase()) || 
-        trade.id.toString().includes(searchTerm)) : true;
+      const matchesSearchTerm = searchTerm ?
+        (trade.counterparty.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          trade.id.toString().includes(searchTerm)) : true;
 
-    return matchesStatus && matchesSeverity && matchesSearchTerm;
-   } );} , [trades, filterStatus, filterSeverity, searchTerm]);
+      return matchesStatus && matchesSeverity && matchesSearchTerm;
+    });
+  }, [trades, filterStatus, filterSeverity, searchTerm]);
 
-   const [isModalOpen, setIsModalOpen] = useState(false);
-   const [selectedTrade, setSelectedTrade] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTrade, setSelectedTrade] = useState(null);
 
-   const handleRowClick = (trade) => {
+  const handleRowClick = (trade) => {
     setSelectedTrade(trade);
     setIsModalOpen(true);
-   };
-  
+    
+  };
+
+  function handleResolve(tradeId, note) {
+    const resolvedAt = new Date().toISOString().split("T")[0];
+    const updatedTrades = trades.map((trade) => {
+      if (trade.id === tradeId) {
+        return {
+          ...trade,
+          status: "RESOLVED",
+          resolvedAt,
+          resolutionNotes: note
+        }
+      }
+      return trade;
+    });
+    setTrades(updatedTrades);
+    console.log(`Trade ${tradeId} marked as resolved with note: ${note}`);
+
+  }
 
   return (
     <div className="App">
-      <NavBar /> 
-      <StatsCard/> 
+      <NavBar />
       <SummaryCard trades={trades} loading={loading} error={error} />
-      <StatsCard/>
       <TradeTable trades={filteredTrades} loading={loading} error={error} onRowClick={handleRowClick} />
-      <Badge/>
-      <FilterBar 
+      <FilterBar
         searchTerm={searchTerm}
-        setSearchTerm = {setSearchTerm}
+        setSearchTerm={setSearchTerm}
         filterSeverity={filterSeverity}
         setFilterSeverity={setFilterSeverity}
         filterStatus={filterStatus}
         setFilterStatus={setFilterStatus}
       />
-      {isModalOpen && <TradeDetail isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} trade={selectedTrade} />}
-      </div>
+      {isModalOpen && <TradeDetail setIsModalOpen={setIsModalOpen} trade={selectedTrade} onResolve={handleResolve} />}
+    </div>
 
   )
-    
+
 
 }
 
