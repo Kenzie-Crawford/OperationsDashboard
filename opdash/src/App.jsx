@@ -10,12 +10,14 @@ import { TradeDetail } from './features/TradeDetail.jsx';
 
 
 
+
 function App() {
 
   const { trades, setTrades, loading, error } = useTrades();
   const [filterStatus, setFilterStatus] = useState("");
   const [filterSeverity, setFilterSeverity] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortDirection, setSortDirection] = useState("asc");
 
 
   const filteredTrades = useMemo(() => {
@@ -25,10 +27,14 @@ function App() {
       const matchesSearchTerm = searchTerm ?
         (trade.counterparty.toLowerCase().includes(searchTerm.toLowerCase()) ||
           trade.id.toString().includes(searchTerm)) : true;
-
+      
       return matchesStatus && matchesSeverity && matchesSearchTerm;
-    });
-  }, [trades, filterStatus, filterSeverity, searchTerm]);
+    }).sort((a, b) => {
+    return sortDirection === "asc"
+        ? a.settlementDate.localeCompare(b.settlementDate)
+        : b.settlementDate.localeCompare(a.settlementDate)
+    });   
+}, [trades, filterStatus, filterSeverity, searchTerm, sortDirection]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTrade, setSelectedTrade] = useState(null);
@@ -53,7 +59,6 @@ function App() {
       return trade;
     });
     setTrades(updatedTrades);
-    console.log(`Trade ${tradeId} marked as resolved with note: ${note}`);
 
   }
 
@@ -69,10 +74,13 @@ function App() {
         setFilterSeverity={setFilterSeverity}
         filterStatus={filterStatus}
         setFilterStatus={setFilterStatus}
+        sortDirection={sortDirection}
+        setSortDirection={setSortDirection}
       />
+      
       {isModalOpen && <TradeDetail setIsModalOpen={setIsModalOpen} trade={selectedTrade} onResolve={handleResolve} />}
     </div>
-
+    
   )
 
 

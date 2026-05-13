@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { fetchMockTrades } from "../data/mockTrades";
 import { StatsCard } from "../components/StatsCard";
+import { LoadingSpinner } from "../components/LoadingSpinner";
+import { ErrorMessage } from "../components/ErrorMessage";
 
-function SummaryCard({trades, loading, error}) {
+function SummaryCard({ trades, loading, error }) {
+    if (loading) return <LoadingSpinner message="Loading summary..." />
+    if (error) return <ErrorMessage message={error} />
 
     const totalTrades = trades.length;
     const unresolvedCount = trades.filter((trades) => trades.status === "OPEN").length;
@@ -14,30 +15,32 @@ function SummaryCard({trades, loading, error}) {
         return resolvedDate === today;
     }).length;
 
+
+
     return (
         <div className="summary-cards">
             < StatsCard
-            label="Total Trades"
-            value={totalTrades}
-            variant = "default"
+                label="Total Trades"
+                value={totalTrades}
+                variant="default"
             />
             < StatsCard
-            label="Unresolved Exceptions"
-            value={unresolvedCount}
-            variant = "warning"
+                label="Unresolved Exceptions"
+                value={unresolvedCount}
+                variant="warning"
             />
             < StatsCard
-            label="High Severity Exceptions"
-            value={highSeverityCount}
-            variant = "danger"
+                label="High Severity Exceptions"
+                value={highSeverityCount}
+                variant="danger"
             />
             < StatsCard
-            label="Resolved Today"
-            value={resolvedTodayCount}
-            variant = "success"
+                label="Resolved Today"
+                value={resolvedTodayCount}
+                variant="success"
             />
         </div>
     );
 }
 
-export {SummaryCard};
+export { SummaryCard };

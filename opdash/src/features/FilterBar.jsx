@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function FilterBar({searchTerm, setSearchTerm, filterSeverity, setFilterSeverity, filterStatus, setFilterStatus}) { 
+function FilterBar({searchTerm, setSearchTerm, filterSeverity, setFilterSeverity, filterStatus, setFilterStatus, sortDirection, setSortDirection}) { 
 
     const handleStatus = (e) => {
         setFilterStatus(e.target.value);
@@ -29,6 +29,11 @@ function FilterBar({searchTerm, setSearchTerm, filterSeverity, setFilterSeverity
                     <option value="HIGH">High</option>
                     <option value="MEDIUM">Medium</option>
                     <option value="LOW">Low</option>
+                </select>
+
+                <select value={sortDirection} onChange={(e) => setSortDirection(e.target.value)}>
+                    <option value="asc">Sort by Oldest</option>
+                    <option value="desc">Sort by Newest</option>
                 </select>
             
             
