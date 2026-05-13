@@ -63,8 +63,11 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="app-container">
+      <div className = "sidebar">
       <NavBar />
+      </div>
+      <div className = "main-content">
       <SummaryCard trades={trades} loading={loading} error={error} />
       <TradeTable trades={filteredTrades} loading={loading} error={error} onRowClick={handleRowClick} />
       <FilterBar
@@ -77,6 +80,7 @@ function App() {
         sortDirection={sortDirection}
         setSortDirection={setSortDirection}
       />
+      </div>
       
       {isModalOpen && <TradeDetail setIsModalOpen={setIsModalOpen} trade={selectedTrade} onResolve={handleResolve} />}
     </div>

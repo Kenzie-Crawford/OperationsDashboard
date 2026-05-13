@@ -1,0 +1,55 @@
+:root {
+    --bg-primary: #b4a6ab;
+    --bg-secondary: #946e83;
+    --bg-card: #615055;
+    --bg-hover: #7A6268;
+
+    --accent: #ddf8e8;
+    --accent-bright: #b9f3ce;
+
+    --success: #34d399;
+    --success-dim: rgba(52, 211, 153, 0.15);
+    --danger: #f87171;
+    --danger-dim: rgba(248, 113, 113, 0.15);
+    --warning: #fbbf24;
+    --warning-dim: rgba(251, 191, 36, 0.15);
+    --info: #60a5fa;
+    --info-dim: rgba(96, 165, 250, 0.15);
+
+    --text-primary: #f0e8ea;
+    --text-secondary: #c4b0b5;
+    --text-muted: #8A7880;
+
+    --border: #7A6268;
+    --border-accent: rgba(124, 92, 191, 0.35);
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+
+    --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+
+    font: 16px/1.6 var(--sans);
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+    display:flex;
+    min-height:100vh;
+    color: var(--text-primary);
+}
+
+.sidebar{
+    width: 240px;
+    background: var(--bg-secondary);
+    padding: 20px;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: var(--bg-primary);
+}
