@@ -52,6 +52,12 @@
     padding: 20px;
 }
 
+.nav-brand {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
 .main-content {
     flex: 1;
     padding: 20px;
