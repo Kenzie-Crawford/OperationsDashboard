@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 :root {
     --bg-primary: #b4a6ab;
     --bg-secondary: #946e83;
@@ -8,13 +14,12 @@
     --accent-bright: #b9f3ce;
 
     --success: #34d399;
-    --success-dim: rgba(52, 211, 153, 0.15);
+    --success-dim: rgba(39, 194, 137, 0.15);
     --danger: #f87171;
     --danger-dim: rgba(248, 113, 113, 0.15);
     --warning: #fbbf24;
     --warning-dim: rgba(251, 191, 36, 0.15);
-    --info: #60a5fa;
-    --info-dim: rgba(96, 165, 250, 0.15);
+
 
     --text-primary: #f0e8ea;
     --text-secondary: #c4b0b5;
@@ -36,13 +41,13 @@
 }
 
 .app-container {
-    display:flex;
-    min-height:100vh;
+    display: flex;
+    min-height: 100vh;
     color: var(--text-primary);
 }
 
-.sidebar{
-    width: 240px;
+.sidebar {
+    width: 180px;
     background: var(--bg-secondary);
     padding: 20px;
 }
@@ -53,3 +58,159 @@
     overflow-y: auto;
     background: var(--bg-primary);
 }
+
+.summary-cards {
+    display: flex;
+    gap: 20px;
+    padding: 1rem;
+    width: 100%;
+
+}
+
+.stats-card {
+    flex: 1;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 4px var(--border-accent);
+    padding: 1rem;
+}
+
+.stats-card-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.stats-card-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.danger .stats-card-value {
+    color: var(--danger);
+}
+
+.warning .stats-card-value {
+    color: var(--warning);
+}
+
+.success .stats-card-value {
+    color: var(--success);
+}
+
+.trade-table-container {
+    margin-bottom: 1.5rem;
+}
+
+.trade-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.trade-table thead tr {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+}
+
+.trade-table th {
+    padding: 0.875rem 1.25rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.trade-table td {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+}
+
+.trade-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.trade-table tbody tr:hover {
+    background: var(--bg-hover);
+}
+
+.filter-bar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 1.5rem;
+}
+
+.trade-detail-container {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+.trade-detail-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.detail-value {
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+.notes-container {
+    margin-top: 1rem;
+}
+
+.notes-area {
+    width: 100%;
+    height: 100px;
+    padding: 0.75rem;
+}
+
+textarea {
+    width: 100%;
+    min-height: 80px;
+    background: var(--bg-primary);
+    color: black;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 0.75rem;
+    resize: vertical;
+    font-family: var(--sans);
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: 600;
+
+}
+
+button:hover {
+    background: var(--bg-hover);
+}
+
+.close-modal-btn {
+    margin-right: 10px;
+}
+

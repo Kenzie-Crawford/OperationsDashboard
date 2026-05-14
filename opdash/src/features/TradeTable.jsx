@@ -17,7 +17,7 @@ function TradeTable({ trades, loading, error, onRowClick }) {
             {trades.length === 0 ? (
                 <p>No trades found.</p>
             ) : (
-                <table>
+                <table className ="trade-table">
                     <thead>
                         <tr>
                             <th>ID</th>

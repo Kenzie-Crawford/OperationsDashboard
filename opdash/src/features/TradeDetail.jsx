@@ -23,52 +23,52 @@ function TradeDetail({ setIsModalOpen, trade, onResolve }) {
     return (
         <div className="trade-detail-container">
             <div className="trade-detail-row">
-                <span className="detail-label">ID</span>
+                <span className="detail-label">ID: </span>
                 <span className="detail-value">{trade.id}</span>
             </div>
 
             <div className="trade-detail-row">
-                <span className="detail-label">Asset Type</span>
+                <span className="detail-label">Asset Type: </span>
                 <span className="detail-value">{trade.assetType}</span>
             </div>
 
             <div className="trade-detail-row">
-                <span className="detail-label">Counter Party</span>
+                <span className="detail-label">Counter Party: </span>
                 <span className="detail-value">{trade.counterparty}</span>
             </div>
 
             <div className="trade-detail-row">
-                <span className="detail-label">Amount</span>
+                <span className="detail-label">Amount: </span>
                 <span className="detail-value">{trade.amount}</span>
             </div>
 
             <div className="trade-detail-row">
-                <span className="detail-label">Currency</span>
+                <span className="detail-label">Currency: </span>
                 <span className="detail-value">{trade.currency}</span>
             </div>
 
             <div className="trade-detail-row">
-                <span className="detail-label">Settlement Date</span>
+                <span className="detail-label">Settlement Date: </span>
                 <span className="detail-value">{trade.settlementDate}</span>
             </div>
 
             <div className="trade-detail-row">
-                <span className="detail-label">Exception Reason</span>
+                <span className="detail-label">Exception Reason: </span>
                 <span className="detail-value">{trade.exceptionReason}</span>
             </div>
 
             <div className="trade-detail-row">
-                <span className="detail-label">Severity</span>
+                <span className="detail-label">Severity: </span>
                 <span className="detail-value">{trade.severity}</span>
             </div>
 
             <div className="trade-detail-row">
-                <span className="detail-label">Status</span>
+                <span className="detail-label">Status: </span>
                 <span className="detail-value">{trade.status}</span>
             </div>
 
             <div className="notes-container">
-                <label className="notes-area">Analyst Notes</label>
+                <label className="notes-area">Analyst Notes: </label>
                 <textarea
                     value={note}
                     onChange={(e) => setNotes(e.target.value)}
